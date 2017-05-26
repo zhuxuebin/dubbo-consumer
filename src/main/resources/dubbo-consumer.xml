@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+        http://www.springframework.org/schema/jee
+        http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.1.xsd"
+       default-lazy-init="false">
+
+    <dubbo:application name="dubbo_consumer"></dubbo:application>
+    <!--使用zookeeper注册中心暴露服务地址 -->
+    <dubbo:registry address="zookeeper://127.0.0.1:2181" check="false"></dubbo:registry>
+    <!--要引用的服务 -->
+    <dubbo:reference interface="com.dubbo.service.Test" id="springservice"></dubbo:reference>
+    <dubbo:reference interface="com.dubbo.service.FooService" id="fooservice">
+        <dubbo:method name="findFoo" async="true"></dubbo:method>
+    </dubbo:reference>
+    <dubbo:reference interface="com.dubbo.service.BarService" id="barservice">
+        <dubbo:method name="findBar" async="true"></dubbo:method>
+    </dubbo:reference>
+
+
+    <dubbo:reference id="callbackService" interface="com.dubbo.service.CallbackService" />
+
+    <bean id ="demoCallback" class = "com.dubbo.service.impl.NofifyImpl" />
+    <dubbo:reference id="demoService" interface="com.dubbo.service.DemoService" version="1.0.0" group="cn" >
+        <dubbo:method name="get" async="true" onreturn = "demoCallback.onreturn" onthrow="demoCallback.onthrow" />
+    </dubbo:reference>
+</beans>
