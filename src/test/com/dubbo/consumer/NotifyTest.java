@@ -4,7 +4,8 @@ import static org.junit.Assert.*;
 
 import com.dubbo.domain.Person;
 import com.dubbo.service.DemoService;
-import com.dubbo.service.impl.NofifyImpl;
+import com.dubbo.service.Notify;
+import com.dubbo.service.impl.NotifyImpl;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -22,7 +23,7 @@ public class NotifyTest {
         context.start();
 
         DemoService demoService = (DemoService) context.getBean("demoService");
-        NofifyImpl notify = (NofifyImpl) context.getBean("demoCallback");
+        NotifyImpl notify = (NotifyImpl) context.getBean("demoCallback");
         int requestId = 2;
         Person ret = demoService.get(requestId);
         assertEquals(null, ret);
