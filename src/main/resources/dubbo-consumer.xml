@@ -18,8 +18,9 @@
     <dubbo:application name="dubbo_consumer"></dubbo:application>
     <!--使用zookeeper注册中心暴露服务地址 -->
     <dubbo:registry address="zookeeper://127.0.0.1:2181" check="false"></dubbo:registry>
+
     <!--要引用的服务 -->
-    <dubbo:reference interface="com.dubbo.service.Test" id="springservice"></dubbo:reference>
+    <dubbo:reference interface="com.dubbo.service.Test" id="springservice" cluster="myCluster"></dubbo:reference>
     <dubbo:reference interface="com.dubbo.service.FooService" id="fooservice">
         <dubbo:method name="findFoo" async="true"></dubbo:method>
     </dubbo:reference>
@@ -33,5 +34,10 @@
     <bean id ="demoCallback" class = "com.dubbo.service.impl.NofifyImpl" />
     <dubbo:reference id="demoService" interface="com.dubbo.service.DemoService" version="1.0.0" group="cn" >
         <dubbo:method name="get" async="true" onreturn = "demoCallback.onreturn" onthrow="demoCallback.onthrow" />
+    </dubbo:reference>
+
+    <!--消费者利用completableFuture异步调用-->
+    <dubbo:reference id="asyncService" timeout="10000" interface="com.dubbo.service.AsyncService" check="false">
+        <dubbo:method name="sayHello" async="true" />
     </dubbo:reference>
 </beans>

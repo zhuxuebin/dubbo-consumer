@@ -43,7 +43,21 @@
       <groupId>com.alibaba</groupId>
       <artifactId>dubbo</artifactId>
       <version>2.5.3</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.javassist</groupId>
+          <artifactId>javassist</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
+
+    <!--升级版本,解决报错：java.io.IOException: invalid constant type: 18-->
+    <dependency>
+      <groupId>org.javassist</groupId>
+      <artifactId>javassist</artifactId>
+      <version>3.18.2-GA</version>
+    </dependency>
+
     <!-- 连接zookeeper的客户端 -->
     <dependency>
       <groupId>com.github.sgroschupf</groupId>

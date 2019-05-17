@@ -33,5 +33,11 @@ public class EchoServiceTest {
         EchoService es = (EchoService)obj;
         Object data = es.$echo("aaaa");
         System.out.println(data);
+
+        try{
+            Thread.sleep(10000);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
