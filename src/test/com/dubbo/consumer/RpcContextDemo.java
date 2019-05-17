@@ -1,7 +1,7 @@
 package com.dubbo.consumer;
 
-import com.alibaba.dubbo.rpc.RpcContext;
 import com.dubbo.service.Test;
+import org.apache.dubbo.rpc.RpcContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

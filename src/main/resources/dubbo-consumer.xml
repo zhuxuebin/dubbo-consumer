@@ -20,7 +20,7 @@
     <dubbo:registry address="zookeeper://127.0.0.1:2181" check="false"></dubbo:registry>
 
     <!--要引用的服务 -->
-    <dubbo:reference interface="com.dubbo.service.Test" id="springservice" cluster="myCluster"></dubbo:reference>
+    <dubbo:reference interface="com.dubbo.service.Test" id="springservice" cluster="myCluster" timeout="6000"></dubbo:reference>
     <dubbo:reference interface="com.dubbo.service.FooService" id="fooservice">
         <dubbo:method name="findFoo" async="true"></dubbo:method>
     </dubbo:reference>

@@ -1,11 +1,11 @@
 package com.dubbo.ext.cluster;
 
-import com.alibaba.dubbo.common.extension.Activate;
-import com.alibaba.dubbo.rpc.Invoker;
-import com.alibaba.dubbo.rpc.RpcException;
-import com.alibaba.dubbo.rpc.cluster.Cluster;
-import com.alibaba.dubbo.rpc.cluster.Directory;
-import com.alibaba.dubbo.rpc.cluster.support.FailoverClusterInvoker;
+import org.apache.dubbo.common.extension.Activate;
+import org.apache.dubbo.rpc.Invoker;
+import org.apache.dubbo.rpc.RpcException;
+import org.apache.dubbo.rpc.cluster.Cluster;
+import org.apache.dubbo.rpc.cluster.Directory;
+import org.apache.dubbo.rpc.cluster.support.FailoverClusterInvoker;
 
 /**
  * @ClassName MyCluster

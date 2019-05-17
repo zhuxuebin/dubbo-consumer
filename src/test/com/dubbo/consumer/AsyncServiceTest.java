@@ -1,7 +1,7 @@
 package com.dubbo.consumer;
 
-import com.alibaba.dubbo.rpc.RpcContext;
 import com.dubbo.service.AsyncService;
+import org.apache.dubbo.rpc.RpcContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -28,10 +28,10 @@ public class AsyncServiceTest {
         CompletableFuture<String> future =  asyncService.sayHello("James Zhu");
 
         //拿到调用的Future引用，当结果返回后，会被通知和设置到此Future, 2.7.0以前不支持CompletableFuture
-//        CompletableFuture<String> helloFuture = RpcContext.getContext().getCompletableFuture();
+        CompletableFuture<String> helloFuture = RpcContext.getContext().getCompletableFuture();
 
         //利用CompletableFuture异步获取结果
-        future.whenComplete((v,t)->{
+        helloFuture.whenComplete((v,t)->{
             if(t!= null){
                 t.printStackTrace();
             } else {
